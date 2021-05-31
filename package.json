@@ -10,6 +10,7 @@
     "bootstrap": "^5.0.1",
     "font-awesome": "^4.7.0",
     "formik": "^2.2.8",
+    "node-sass": "^6.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
     "react-dom": "^17.0.2",
@@ -24,7 +25,26 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "stylelint": "stylelint --config=.stylelintrc \"./src/**/*.scss\"",
+    "stylelint:fix": "stylelint --config=.stylelintrc \"./src/**/*.scss\" --fix",
+    "prettier": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint:fix": "eslint src/**/*.{js,jsx} --fix",
+    "lint": "eslint src/**/*.{js,jsx}"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "pretty-quick --staged",
+      "npm run lint:fix"
+    ],
+    "src/**/*.scss": [
+      "npm run stylelint:fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -43,5 +63,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.0",
+    "pretty-quick": "^3.1.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0"
   }
 }
