@@ -23,6 +23,8 @@ RUN npm run build
 # simpler and faster.
 #
 # We just need to drop the built files in where nginx can find them.
+#
+# https://hub.docker.com/_/nginx
 
 FROM nginx:latest AS prod
 COPY --from=build /app/build /usr/share/nginx/html
